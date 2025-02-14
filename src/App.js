@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import SearchFilters from './components/WeatherDashboard/SearchFilters';
 import WeatherList from './components/WeatherDashboard/WeatherList';
 import CloudAnimation from './components/WeatherDashboard/CloudAnimation';
-import useWeatherData from './components/WeatherDashboard/hooks/useWeatherData';
+import useWeatherData from './components/WeatherDashboard/useWeatherData';
+
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
