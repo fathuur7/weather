@@ -126,3 +126,7 @@ npm start
 - Desktop enhancements
 - Adaptive layouts
 - Touch-friendly interactions
+
+## 
+final:
+ https://weather-9vqwe93jr-fathuur7s-projects.vercel.app/
