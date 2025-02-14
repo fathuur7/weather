@@ -1,35 +1,21 @@
 // src/components/WeatherDashboard/hooks/useWeatherData.js
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import useFetchData from '../../../utils/fetchData';
 
 export const useWeatherData = (searchTerm, minTemp, maxTemp) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [filteredDays, setFilteredDays] = useState([]);
   
-  const API_URL = process.env.REACT_APP_API_URL;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(API_URL);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const dataJson = await response.json();
-        setData(dataJson);
-        setFilteredDays(dataJson.days);
-        console.log(dataJson);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-
-    if (API_URL) {
-      fetchData();
+  useFetchData(process.env.REACT_APP_API_URL).then(({ data, error }) => {
+    if (error) {
+      setError(error);
     } else {
-      setError('API URL is not defined');
+      setData(data);
+      setFilteredDays(data.days || []);
     }
-  }, []);
+    }, [searchTerm, minTemp, maxTemp]);
 
   const filterDays = () => {
     if (!data) return;
